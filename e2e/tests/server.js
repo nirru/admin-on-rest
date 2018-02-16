@@ -23,6 +23,20 @@ before(
         })
 );
 
+before(() => {
+    try {
+        return driver
+            .manage()
+            .window()
+            .setSize(1280, 1024)
+            .catch(error => {
+                console.error(error);
+            });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 after(() => {
     listeningServer.close();
     return driver.quit();
